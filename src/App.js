@@ -25,66 +25,32 @@ function App() {
     <div className="container-fluid">
       {loading && <p>Loading...</p>}
       {error && <p>Something went wrong...</p>}
-      {response && response === null ? (
-        <>
-          <div className="row">
-            <div className="col-12 d-flex justify-content-center align-items-center input">
-              <input
-                className="col-3 form-control-sm py-1 fs-4 text-capitalize border border-3 border-dark"
-                type="text"
-                placeholder="Search Anything..."
-                value={img}
-                onChange={handleSearchChange}
-              />
-              ;
-            </div>
+      <div className="row">
+        <div className="col-12 d-flex justify-content-center align-items-center input">
+          <input
+            className="col-3 form-control-sm py-1 fs-4 text-capitalize border border-3 border-dark"
+            type="text"
+            placeholder="Search Anything..."
+            value={img}
+            onChange={handleSearchChange}
+          />
+        </div>
+      </div>
+      {response && (
+        <div className="row">
+          <div className="col-12 d-flex justify-content-evenly flex-wrap">
+            {response.results.map((val) => {
+              return (
+                <img
+                  key={val.id}
+                  className="col-3 img-fluid img-thumbnail"
+                  src={val.urls.small}
+                  alt="val.alt_description"
+                />
+              );
+            })}
           </div>
-          <div className="row">
-            <div className="col-12 d-flex justify-content-evenly flex-wrap">
-              {response.results.map((val) => {
-                return (
-                  <img
-                    key={val.id}
-                    className="col-3 img-fluid img-thumbnail"
-                    src={val.urls.small}
-                    alt="val.alt_description"
-                  />
-                );
-              })}
-            </div>
-            ;
-          </div>
-        </>
-      ) : (
-        <>
-          <div className="row">
-            <div className="col-12 d-flex justify-content-center align-items-center input">
-              <input
-                className="col-3 form-control-sm py-1 fs-4 text-capitalize border border-3 border-dark"
-                type="text"
-                placeholder="Search Anything..."
-                value={img}
-                onChange={handleSearchChange}
-              />
-              ;
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-12 d-flex justify-content-evenly flex-wrap">
-              {response.results.map((val) => {
-                return (
-                  <img
-                    key={val.id}
-                    className="col-3 img-fluid img-thumbnail"
-                    src={val.urls.small}
-                    alt="val.alt_description"
-                  />
-                );
-              })}
-            </div>
-            ;
-          </div>
-        </>
+        </div>
       )}
     </div>
   );
