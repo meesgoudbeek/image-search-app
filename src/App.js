@@ -1,6 +1,6 @@
-import "./styles/App.css";
 import React, { useState } from "react";
 import useFetch from "./services/useFetch";
+import LightBox from "./components/Lightbox";
 
 const getUrl = (img) => {
   const clientId =
@@ -41,12 +41,14 @@ function App() {
           <div className="col-12 d-flex justify-content-evenly flex-wrap">
             {response.results.map((val) => {
               return (
-                <img
-                  key={val.id}
-                  className="col-3 img-fluid img-thumbnail"
-                  src={val.urls.small}
-                  alt="val.alt_description"
-                />
+                <LightBox src={val.urls.regular}>
+                  <img
+                    key={val.id}
+                    src={val.urls.small}
+                    className="w-100 h-100 img-thumbnail"
+                    alt="val.alt_description"
+                  />
+                </LightBox>
               );
             })}
           </div>
