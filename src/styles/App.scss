@@ -5,3 +5,7 @@
   position: fixed;
   z-index: 99;
 }
+
+.img-thumbnail {
+  object-fit: cover;
+}

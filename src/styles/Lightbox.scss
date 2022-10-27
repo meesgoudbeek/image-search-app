@@ -1,5 +1,6 @@
 .lightbox {
   cursor: pointer;
+  user-select: none;
 
   &__box {
     position: fixed;

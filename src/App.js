@@ -43,8 +43,9 @@ function App() {
               return (
                 <LightBox src={val.urls.regular}>
                   <img
+                    loading="lazy"
                     key={val.id}
-                    src={val.urls.small}
+                    src={val.urls.regular}
                     className="w-100 h-100 img-thumbnail"
                     alt="val.alt_description"
                   />
