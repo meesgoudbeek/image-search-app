@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import useFetch from "./services/useFetch";
 import LightBox from "./components/Lightbox";
+import Loader from "./components/Loader";
 
 const getUrl = (img) => {
   const clientId =
@@ -23,15 +25,16 @@ function App() {
 
   return (
     <div className="container-fluid">
-      {loading && <p>Loading...</p>}
-      {error && <p>Something went wrong...</p>}
+      {loading && <Loader />}
+      {error && (
+        <p>Something went wrong... probably exceeded the rate limit </p>
+      )}
       <div className="row">
         <div className="col-12 d-flex justify-content-center align-items-center input">
           <input
             className="col-3 form-control-sm py-1 fs-4 text-capitalize border border-3 border-dark"
             type="text"
             placeholder="Search Anything..."
-            value={img}
             onChange={handleSearchChange}
           />
         </div>
@@ -41,10 +44,8 @@ function App() {
           <div className="col-12 d-flex justify-content-evenly flex-wrap">
             {response.results.map((val) => {
               return (
-                <LightBox src={val.urls.regular}>
-                  <img
-                    loading="lazy"
-                    key={val.id}
+                <LightBox key={val.id} src={val.urls.regular}>
+                  <LazyLoadImage
                     src={val.urls.regular}
                     className="w-100 h-100 img-thumbnail"
                     alt="val.alt_description"
