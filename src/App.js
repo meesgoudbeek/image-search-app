@@ -21,14 +21,10 @@ function App() {
     setImg(e.target.value);
   };
 
-  console.log(response);
-
   return (
     <div className="container-fluid">
       {loading && <Loader />}
-      {error && (
-        <p>Something went wrong... probably exceeded the rate limit </p>
-      )}
+      {error && <p>Something went wrong...</p>}
       <div className="row">
         <div className="col-12 d-flex justify-content-center align-items-center input">
           <input
